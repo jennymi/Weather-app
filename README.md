@@ -23,7 +23,9 @@ This project was generated with Create react app.
 ### Run app
 
 After you have cloned this repo to your computer. Go into project directory and run the following command.
-```npm dev```
+```sh
+  npm start
+
+```
 
 Then you will be able to access the service on your browser through: http://localhost:3000
-In the project directory, you can run: `npm start`
