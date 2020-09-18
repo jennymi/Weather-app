@@ -2,21 +2,21 @@
 
 Currently under development. We're gonna add features as we go.
 
-### pre-requisites
+### pre-requisites 🌤
 
 * NPM
 * Node
 
-### Purpose 
+### Purpose ☀
 
 This project was made to get a better understanding of react's core functionality.
 
-### Technology
+### Technology ⛈
 * CRA as boilerplate
 * ReactJs for view rendering
 * Typescript/Javascript as a web language
 
-### Run app
+### Run app 🌨
 
 After you have cloned this repo to your computer. Go into project directory and run the following command.
 ```sh
