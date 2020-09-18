@@ -1,4 +1,4 @@
-## Weather app
+## Weather app 🌦
 
 Currently under development. We're gonna add features as we go.
 
