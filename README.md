@@ -1,7 +1,5 @@
-## Instagroom
+## Weather app
 
-Project to create an Instagram follower app 
-The app is going to compare accounts you follow and accounts that follow you.
 Currently under development. We're gonna add features as we go.
 
 ### pre-requisites
@@ -14,11 +12,9 @@ Currently under development. We're gonna add features as we go.
 This project was made to get a better understanding of react's core functionality.
 
 ### Technology
-
+* CRA as boilerplate
 * ReactJs for view rendering
 * Typescript/Javascript as a web language
-
-This project was generated with Create react app.
 
 ### Run app
 
