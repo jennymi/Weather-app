@@ -4,6 +4,14 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './misc/serviceWorker';
 
+/**
+ * Find icons: https://fontawesome.com/icons?d=gallery
+ * How to import and use icon? See: https://www.npmjs.com/package/@fortawesome/react-fontawesome
+ */
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
+library.add(faCheckSquare, faCoffee)
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
