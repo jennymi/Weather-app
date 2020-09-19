@@ -5,12 +5,14 @@ import { IUserGeoLocation } from './models';
 import { IWeather } from './models/weather';
 import { kelvinToCelsius } from './helpers';
 import { config } from './configs';
+import {getCurrentDate} from './models/dateTime';
 
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
 function App() {
   const [weather, setWeather] = useState<IWeather>(); // this is the weather data
   const [userGeolocation, setUserGeolocation] = useState<IUserGeoLocation | undefined>(undefined);
+  
 
   const getWeatherApiUrl = useCallback(
     (lat: number, lon: number): string => {
@@ -51,11 +53,14 @@ function App() {
       });
   }, [getWeatherApiUrl, userGeolocation])
 
+  console.log(getCurrentDate())
+
   return (
     <div className="app">
       <header className="app-header">
         <h1>Weather</h1>
         {weather && kelvinToCelsius(weather.current.temp)}
+        {getCurrentDate()}
       </header>
     </div>
   );
