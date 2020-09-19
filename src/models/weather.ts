@@ -1,3 +1,4 @@
+// expand this model if in need of more data from response
 export interface IWeather {
   current: {
     clouds: number;
