@@ -4,19 +4,19 @@ import './App.css';
 import { IUserGeoLocation } from './models';
 import { IWeather } from './models/weather';
 import { kelvinToCelsius } from './helpers';
+import { config } from './configs';
+
+const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
 function App() {
-  const GEOLOC_URL = "https://geolocation-db.com/json/";
-  const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
-
   const [weather, setWeather] = useState<IWeather>(); // this is the weather data
   const [userGeolocation, setUserGeolocation] = useState<IUserGeoLocation | undefined>(undefined);
 
   const getWeatherApiUrl = useCallback(
-    (latitude: number, longitude: number): string => {
-      return `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`;
+    (lat: number, lon: number): string => {
+      return `${config.WEATHER_API_BASE_URL}?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
     },
-    [API_KEY],
+    [],
   )
 
   /**
@@ -24,7 +24,7 @@ function App() {
    */
   useEffect(() => {
     const fetchGeolocation = (): void => {
-      axios(GEOLOC_URL)
+      axios(config.GEOLOCATION_API_URL)
         .then(res => setUserGeolocation(res.data))
         .catch(error => {
           throw error;
@@ -49,12 +49,11 @@ function App() {
       .catch(error => {
         throw error;
       });
-
   }, [getWeatherApiUrl, userGeolocation])
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="app">
+      <header className="app-header">
         <h1>Weather</h1>
         {weather && kelvinToCelsius(weather.current.temp)}
       </header>
