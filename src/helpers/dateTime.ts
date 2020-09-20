@@ -7,7 +7,6 @@ export function getCurrentDate(){
     const hour = newDate.getHours();
     const minutes = newDate.getMinutes();
     const seconds = newDate.getSeconds();
-
     const formattedMonth = `${month<10?`0${month}`:`${month}`}`
     
     return `${year}-${formattedMonth}-${date} ${hour}:${minutes}:${seconds}`
