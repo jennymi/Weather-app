@@ -11,3 +11,4 @@ export const initialUserGeoLocation: IUserGeoLocation = {
   city: undefined,
   country_name: undefined
 }
+

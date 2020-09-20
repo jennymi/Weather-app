@@ -1,23 +1,27 @@
-### prerequisite
+## Weather app 🌦
 
-NPM
-Node
+Currently under development. We're gonna add features as we go.
 
-## Instagroom
+### pre-requisites 🌤
 
-Project to create an Instagram follower app 
-The app is going to compare accounts you follow and accounts that follow you.
-We're gonna add features as we go.
+* NPM
+* Node
 
-### Purpose 
+### Purpose ☀
 
-This project was made to learn React.
+This project was made to get a better understanding of react's core functionality.
 
-### Technology
+### Technology ⛈
+* CRA as boilerplate
+* ReactJs for view rendering
+* Typescript/Javascript as a web language
 
-React
-TypeScript
+### Run app 🌨
 
-### Run app
+After you have cloned this repo to your computer. Go into project directory and run the following command.
+```sh
+  npm start
 
-In the project directory, you can run: `npm start`
+```
+
+Then you will be able to access the service on your browser through: http://localhost:3000
