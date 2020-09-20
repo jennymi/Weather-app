@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import * as serviceWorker from './misc/serviceWorker';
+import './index.css';
 
 /**
  * Find icons: https://fontawesome.com/icons?d=gallery
@@ -14,7 +14,7 @@ library.add(faCheckSquare, faCoffee)
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
