@@ -1,4 +1,7 @@
-// expand this model if in need of more data from response
+/**
+ * Here we specify types for each of the properties for typescript to understand.
+ * If you are interested to use more of the weather data, then you can expand this by comparing with the weather api response.
+ */
 export interface IWeather {
   current: {
     clouds: number;
