@@ -5,7 +5,7 @@ import { IUserGeoLocation } from './models';
 import { IWeather } from './models/weather';
 import { kelvinToCelsius } from './helpers';
 import { config } from './configs';
-import {getCurrentDate} from './models/dateTime';
+import {getCurrentDate} from './helpers/dateTime';
 
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
@@ -52,8 +52,6 @@ function App() {
         throw error;
       });
   }, [getWeatherApiUrl, userGeolocation])
-
-  console.log(getCurrentDate())
 
   return (
     <div className="app">
