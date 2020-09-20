@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import './App.css';
 import { IUserGeoLocation } from './models';
-import { IWeather } from './models/weather';
+import { IWeatherData } from './models/weather';
 import { kelvinToCelsius } from './helpers';
 import { config } from './configs';
 import {getCurrentDate} from './helpers/dateTime';
@@ -10,7 +10,7 @@ import {getCurrentDate} from './helpers/dateTime';
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
 function App() {
-  const [weather, setWeather] = useState<IWeather>(); // this is the weather data
+  const [weather, setWeather] = useState<IWeatherData>(); // this is the weather data
   const [userGeolocation, setUserGeolocation] = useState<IUserGeoLocation | undefined>(undefined);
 
 
@@ -53,6 +53,7 @@ function App() {
       });
   }, [getWeatherApiUrl, userGeolocation])
 
+  console.log(weather)
   return (
     <div className="app">
       <header className="app-header">
