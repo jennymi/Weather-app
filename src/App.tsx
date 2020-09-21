@@ -6,7 +6,7 @@ import { IWeather } from './models/weather';
 import { kelvinToCelsius, kelvinToFahrenheit } from './helpers';
 import { config } from './configs';
 import {getCurrentDate} from './helpers/dateTime';
-// import Button from 'react-bootstrap/Button';
+import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
@@ -15,6 +15,8 @@ function App() {
   const [weather, setWeather] = useState<IWeather>(); // this is the weather data
   const [userGeolocation, setUserGeolocation] = useState<IUserGeoLocation | undefined>(undefined);
   
+  const [isToggled, setToggled] = useState(false);
+  const toggleTrueFalse = () => setToggled(!isToggled);
 
   const getWeatherApiUrl = useCallback(
     (lat: number, lon: number): string => {
@@ -61,14 +63,16 @@ function App() {
     <div className="app">
       <header className="app-header">
         <h1>Weather</h1>
-        {weather && kelvinToCelsius(weather.current.temp)}
+         {weather && (isToggled ? kelvinToFahrenheit(weather.current.temp) : kelvinToCelsius(weather.current.temp))}
         <br/>
         {getCurrentDate()}
         <br/><br/>
-        {/* <Button variant='primary' size='lg' onClick={kelvinToFahrenheit}>
-          Fahrenheit
-        </Button> */}
-        {weather && kelvinToFahrenheit(weather.current.temp)}
+
+        <h2>{isToggled}</h2>
+        <Button variant='primary' size='lg' onClick={toggleTrueFalse}>
+        {isToggled ? 'Fahrenheit' : 'Celsius'}
+        </Button>
+
       </header>
     </div>
   );
