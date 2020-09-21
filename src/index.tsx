@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './misc/serviceWorker';
 import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 /**
  * Find icons: https://fontawesome.com/icons?d=gallery
