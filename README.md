@@ -16,6 +16,7 @@ This project was made to get a better understanding of React's core functionalit
  * Code reviewing
  * Git-flow
  * Commit guidelines for easy debugging when things go wrong
+ * Having fun
 
 ### pre-requisites 🌤
 
