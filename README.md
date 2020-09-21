@@ -9,7 +9,7 @@ Currently under development. We're gonna add features as we go.
 
 ### Purpose ☀
 
-This project was made to get a better understanding of react's core functionality.
+This project was made to get a better understanding of React's core functionality as well as practicing working in team in an agile environment.
 
 ### Technology ⛈
 * CRA as boilerplate
