@@ -6,7 +6,7 @@ import { IWeather } from './models/weather';
 import { kelvinToCelsius, kelvinToFahrenheit } from './helpers';
 import { config } from './configs';
 import {getCurrentDate} from './helpers/dateTime';
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
@@ -62,11 +62,13 @@ function App() {
       <header className="app-header">
         <h1>Weather</h1>
         {weather && kelvinToCelsius(weather.current.temp)}
+        <br/>
         {getCurrentDate()}
         <br/><br/>
-        <Button variant='primary' size='lg' onClick={kelvinToFahrenheit}>
+        {/* <Button variant='primary' size='lg' onClick={kelvinToFahrenheit}>
           Fahrenheit
-        </Button>
+        </Button> */}
+        {weather && kelvinToFahrenheit(weather.current.temp)}
       </header>
     </div>
   );
