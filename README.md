@@ -22,6 +22,8 @@ This project was made to get a better understanding of React's core functionalit
 * CRA as boilerplate
 * ReactJs for view rendering
 * Typescript/Javascript as a web language
+* GeolocationDB for using rough coordinates of visitor 
+* Openweather API for fetching weather data
 
 ### Run app 🌨
 
