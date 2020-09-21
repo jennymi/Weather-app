@@ -6,18 +6,18 @@ import { IUserGeoLocation } from "../models";
 /**
  * get user geolocation including coordinates
  */
-const useFetchLocation = (): { userGeoLocation: IUserGeoLocation | undefined } => {
-  const [userGeoLocation, setUserGeolocation] = useState<IUserGeoLocation>();
+const useFetchLocation = (): { location: IUserGeoLocation | undefined } => {
+  const [location, setLocation] = useState<IUserGeoLocation>();
 
   useEffect(() => {
     axios(config.GEOLOCATION_API_URL)
-      .then(res => setUserGeolocation(res.data))
+      .then(res => setLocation(res.data))
       .catch(error => {
         throw error;
       });
   }, []);
 
-  return {userGeoLocation}
+  return { location }
 }
 
 export default useFetchLocation;

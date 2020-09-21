@@ -10,12 +10,12 @@ const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
  * get weather data using user coordinates
  */
 const useFetchWeather = (): { weatherData: IWeatherData | undefined } => {
-  const { userGeoLocation } = useFetchLocation();
+  const { location } = useFetchLocation();
   const [weatherData, setWeatherData] = useState<IWeatherData>();
 
   useEffect(() => {
-    const lat = userGeoLocation?.latitude;
-    const lon = userGeoLocation?.longitude;
+    const lat = location?.latitude;
+    const lon = location?.longitude;
     const WEATHER_API_URL = `${config.WEATHER_API_BASE_URL}?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
     if (!lat || !lon) {
       return;
@@ -26,7 +26,7 @@ const useFetchWeather = (): { weatherData: IWeatherData | undefined } => {
       .catch(error => {
         throw error;
       });
-  }, [userGeoLocation])
+  }, [location])
 
   return {
     weatherData
