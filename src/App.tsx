@@ -15,15 +15,18 @@ const App = () => {
   return (
     <div className="app">
       <header className="app-header">
+        <h1>{weatherData && (weatherData.current.weather[0].main)}</h1>
+        <br/>
         <h1>{location?.city}, {location?.country_name}</h1>
         {weatherData && (toggleMetric ? kelvinToFahrenheit(weatherData.current.temp) : kelvinToCelsius(weatherData.current.temp))}
+        
         <br/>
         {getCurrentDate()}
         <br/><br/>
-        <Button variant='primary' size='lg' onClick={toggleTrueFalse}>
-        {toggleMetric ? 'Fahrenheit' : 'Celsius'}
-        </Button>
 
+        <Button variant='primary' size='lg' onClick={toggleTrueFalse} style={{position: 'absolute', top: 5, right: 5}}>
+          {toggleMetric ? 'Celsius' : 'Fahrenheit'}
+        </Button>
       </header>
     </div>
   );
