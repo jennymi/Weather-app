@@ -21,7 +21,7 @@ const App = () => {
         {getCurrentDate()}
         <br/><br/>
         <Button variant='primary' size='lg' onClick={toggleTrueFalse}>
-        {toggleMetric ? 'Fahrenheit' : 'Celsius'}
+        {toggleMetric ? 'Celsius' : 'Fahrenheit'}
         </Button>
 
       </header>
