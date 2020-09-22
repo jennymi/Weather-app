@@ -1,6 +1,6 @@
 /**
  * Here we specify types for each of the properties for typescript to understand.
- * If you are interested to use more of the weather data, then you can expand this by comparing with the weather api response.
+ * If you are interested to use more of the weather data, then you can expand this model by comparing with the weather API response.
  */
 export interface IWeatherData {
   current: {
@@ -12,7 +12,8 @@ export interface IWeatherData {
     pressure: number;
     sunrise: number;
     sunset: number;
-    temp: number; // this is in kelvin
+    /* we are mutating this to include unit conversion, therefore a string */
+    temp: string;
     uvi: number;
     visibility: number;
     weather: IWeather[];
@@ -26,4 +27,9 @@ export interface IWeather {
   icon: string;
   id: 804;
   main: string;
+}
+
+export enum Unit {
+  CELSIUS = "CELSIUS",
+  FAHRENHEIT = "FAHRENHEIT"
 }
