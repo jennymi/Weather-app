@@ -15,6 +15,8 @@ const App = () => {
   return (
     <div className="app">
       <header className="app-header">
+        <h1>{weatherData && (weatherData.current.weather[0].main)}</h1>
+        <br/>
         <h1>{location?.city}, {location?.country_name}</h1>
         {weatherData && (toggleMetric ? kelvinToFahrenheit(weatherData.current.temp) : kelvinToCelsius(weatherData.current.temp))}
         
