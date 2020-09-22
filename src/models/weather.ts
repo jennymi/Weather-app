@@ -12,8 +12,9 @@ export interface IWeatherData {
     pressure: number;
     sunrise: number;
     sunset: number;
-    /* we are mutating this to include unit conversion, therefore a string */
-    temp: string;
+    temp: number;
+    /* extended property simplifying includement of unit */
+    displayTemp?: string;
     uvi: number;
     visibility: number;
     weather: IWeather[];

@@ -1,11 +1,9 @@
 import React, { CSSProperties, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import './App.css';
-// import Button from '';
-// import { kelvinToCelsius, kelvinToFahrenheit } from './helpers';
-import { getCurrentDate } from './helpers/dateTime';
+import Timer from './components/Timer';
 import useFetchLocation from './hooks/useFetchLocation';
-import useFetchWeather from './hooks/useFetchWeather';
+import useWeather from './hooks/useWeatherUnitConversion';
 import { Unit } from './models/weather';
 
 const App = () => {
@@ -14,7 +12,7 @@ const App = () => {
     setUnit(unit === Unit.CELSIUS ? Unit.FAHRENHEIT : Unit.CELSIUS)
   }
   const { location } = useFetchLocation();
-  const { weatherData } = useFetchWeather(unit);
+  const { weather } = useWeather(unit);
 
   const unitButtonStyle: CSSProperties = {
     position: 'absolute',
@@ -25,13 +23,13 @@ const App = () => {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>{weatherData && (weatherData.current.weather[0].main)}</h1>
+        <h1>{weather && (weather.current.weather[0].main)}</h1>
         <br/>
         <h1>{location?.city}, {location?.country_name}</h1>
-        {weatherData && weatherData.current.temp}
+        {weather && weather.current?.displayTemp}
 
         <br/>
-        {getCurrentDate()}
+        <Timer/>
         <br/><br/>
 
         <Button variant='primary' onClick={toggleUnit} style={unitButtonStyle}>
