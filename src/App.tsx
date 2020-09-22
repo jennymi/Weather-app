@@ -1,4 +1,4 @@
-import React, { CSSProperties, useState } from 'react';
+import React, { CSSProperties, useCallback, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import './App.css';
 import Timer from './components/Timer';
@@ -8,11 +8,12 @@ import { Unit } from './models/weather';
 
 const App = () => {
   const [unit, setUnit] = useState<Unit>(Unit.CELSIUS);
-  const toggleUnit = () => {
-    setUnit(unit === Unit.CELSIUS ? Unit.FAHRENHEIT : Unit.CELSIUS)
-  }
   const { location } = useFetchLocation();
   const { weather } = useWeather(unit);
+  const toggleUnit = useCallback(
+    () => setUnit(u => u === Unit.CELSIUS ? Unit.FAHRENHEIT : Unit.CELSIUS
+  ), [])
+
 
   const unitButtonStyle: CSSProperties = {
     position: 'absolute',
@@ -33,7 +34,7 @@ const App = () => {
         <br/><br/>
 
         <Button variant='primary' onClick={toggleUnit} style={unitButtonStyle}>
-          {unit === Unit.CELSIUS ? '°C' : '°F'}
+          {unit === Unit.CELSIUS ? '°F' : '°C'}
         </Button>
       </header>
     </div>

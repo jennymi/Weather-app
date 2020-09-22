@@ -10,7 +10,6 @@ const useWeather = (unit: Unit): { weather: IWeatherData | undefined } => {
   const applyUnitConversion = useCallback((weather: IWeatherData) => {
     // mutate extended displayTemp prop
     weather.current.displayTemp = unitConversion({temp: weather.current.temp, unit})
-    console.log(weather.current.displayTemp)
     return weather;
   }, [unit])
 
