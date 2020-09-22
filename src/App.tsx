@@ -9,8 +9,8 @@ import useFetchWeather from './hooks/useFetchWeather';
 const App = () => {
   const { location } = useFetchLocation();
   const { weatherData } = useFetchWeather();
-  const [toggleMetric, setToggled] = useState(false);
-  const toggleTrueFalse = () => setToggled(!toggleMetric);
+  const [toggleMetric, setToggledMetric] = useState(false);
+  const toggleTrueFalse = () => setToggledMetric(!toggleMetric);
 
   return (
     <div className="app">
@@ -20,8 +20,6 @@ const App = () => {
         <br/>
         {getCurrentDate()}
         <br/><br/>
-
-        <h2>{toggleMetric}</h2>
         <Button variant='primary' size='lg' onClick={toggleTrueFalse}>
         {toggleMetric ? 'Fahrenheit' : 'Celsius'}
         </Button>
