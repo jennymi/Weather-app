@@ -1,0 +1,19 @@
+@keyframes spin {
+  0% {
+    transform: rotateZ(0);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+
+.header-options {
+  &-button {
+    margin-left: 1rem;
+
+    &.refresh-animation svg {
+      animation: spin 1s linear;
+    }
+  }
+}

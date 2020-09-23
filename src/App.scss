@@ -1,3 +1,5 @@
+@import './styles/_variables.scss';
+
 .app {
   text-align: center;
   min-height: 30vh;
@@ -23,29 +25,36 @@
   flex-direction: column;
   min-height: 75vh;
   padding: 1.5rem;
-  border-top: 2px solid #43f;
+  border-top: 2px solid $action-color;
 
 
   &-header {
     display: flex;
     position: relative;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
+
+
+    .meta-info {
+      display: flex;
+      align-items: center;
+    }
 
     .label {
       font-size: 1rem;
       line-height: 100%;
       margin-right: 1rem;
+      color: white;
+      background-color: $action-color;
+      padding: 0.375rem 0.75rem;
+      border-radius: 0.25rem;
+      height: 38px;
+      line-height: 1.5;
     }
 
     h3 {
       display: inline-block;
       margin: 0;
-    }
-
-    .convert-unit-button {
-      position: absolute;
-      right: 0;
     }
   }
 
