@@ -1,17 +1,18 @@
-import { useEffect, useState } from "react";
-import { config } from "../configs";
 import axios from "axios";
+import { useCallback, useEffect, useState } from "react";
+import { config } from "../configs";
+import { unitConversion } from "../helpers";
+import { IWeatherData, Unit } from "../models/weather";
 import useFetchLocation from "./useFetchLocation";
-import {IWeatherData } from "../models/weather";
 
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
 /**
  * get weather data using user coordinates
  */
-const useFetchWeather = (): { weatherData: IWeatherData | undefined } => {
+const useFetchWeather = (unit: Unit): { weather: IWeatherData | undefined } => {
   const { location } = useFetchLocation();
-  const [weatherData, setWeatherData] = useState<IWeatherData>();
+  const [weatherResponse, setWeatherResponse] = useState<IWeatherData>();
 
   useEffect(() => {
     const lat = location?.latitude;
@@ -20,16 +21,29 @@ const useFetchWeather = (): { weatherData: IWeatherData | undefined } => {
     if (!lat || !lon) {
       return;
     }
+    const fetch = async () => {
+      await axios(WEATHER_API_URL)
+        .then(res => setWeatherResponse(res.data))
+        .catch(error => {
+          throw error;
+        });
+    }
 
-    axios(WEATHER_API_URL)
-      .then(res => setWeatherData(res.data))
-      .catch(error => {
-        throw error;
-      });
+    fetch();
+
   }, [location])
 
+  const applyUnitConversion = useCallback((weather?: IWeatherData) => {
+    if (weather) {
+      // mutate extended displayTemp prop
+      weather.current.displayTemp = unitConversion({temp: weather.current.temp, unit})
+      return weather;
+    }
+  }, [unit])
+
+  const weather = applyUnitConversion(weatherResponse);
   return {
-    weatherData
+    weather
   }
 }
 
