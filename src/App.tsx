@@ -19,7 +19,6 @@ const App = () => {
     right: 10
   }
 
-  console.log(unit)
   return (
     <div className="app">
       <header className="app-header">
