@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './misc/serviceWorker';
+import "./styles/bootstrap.overrides.scss"
 import './index.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 /**
  * Find icons: https://fontawesome.com/icons?d=gallery
