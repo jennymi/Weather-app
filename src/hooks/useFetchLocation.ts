@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
-import { config } from "../configs"
+import { config } from "../configs";
 import { IUserGeoLocation } from "../models";
 
 /**
@@ -17,7 +17,7 @@ const useFetchLocation = (): { location: IUserGeoLocation | undefined } => {
       });
   }, []);
 
-  return { location }
+  return { location };
 }
 
 export default useFetchLocation;

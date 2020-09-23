@@ -7,12 +7,18 @@ import useFetchLocation from "./useFetchLocation";
 
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
+interface IFetchWeatherHook {
+  weather: IWeatherData | undefined;
+  refreshWeather: () => void;
+}
+
 /**
  * get weather data using user coordinates
  */
-const useFetchWeather = (unit: Unit): { weather: IWeatherData | undefined } => {
+const useFetchWeather = (unit?: Unit): IFetchWeatherHook => {
   const { location } = useFetchLocation();
   const [weatherResponse, setWeatherResponse] = useState<IWeatherData>();
+  const [triggerFetch, setTriggerFetch] = useState<boolean>(true);
 
   useEffect(() => {
     const lat = location?.latitude;
@@ -21,29 +27,32 @@ const useFetchWeather = (unit: Unit): { weather: IWeatherData | undefined } => {
     if (!lat || !lon) {
       return;
     }
+
     const fetch = async () => {
       await axios(WEATHER_API_URL)
         .then(res => setWeatherResponse(res.data))
+        .then(() => setTriggerFetch(false))
         .catch(error => {
           throw error;
         });
     }
 
-    fetch();
-
-  }, [location])
+    if (triggerFetch) {
+      fetch();
+    }
+  }, [location, triggerFetch])
 
   const applyUnitConversion = useCallback((weather?: IWeatherData) => {
-    if (weather) {
+    if (weather && unit) {
       // mutate extended displayTemp prop
       weather.current.displayTemp = unitConversion({temp: weather.current.temp, unit})
       return weather;
     }
   }, [unit])
 
-  const weather = applyUnitConversion(weatherResponse);
   return {
-    weather
+    weather: applyUnitConversion(weatherResponse),
+    refreshWeather: () => setTriggerFetch(true)
   }
 }
 
