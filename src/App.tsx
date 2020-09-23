@@ -1,18 +1,16 @@
-import React, { CSSProperties, useCallback, useState } from 'react';
+import React, { CSSProperties, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import './App.css';
 import Timer from './components/Timer';
 import useFetchLocation from './hooks/useFetchLocation';
-import useWeather from './hooks/useWeatherUnitConversion';
+import useFetchWeather from './hooks/useFetchWeather';
 import { Unit } from './models/weather';
 
 const App = () => {
   const [unit, setUnit] = useState<Unit>(Unit.CELSIUS);
   const { location } = useFetchLocation();
-  const { weather } = useWeather(unit);
-  const toggleUnit = useCallback(
-    () => setUnit(u => u === Unit.CELSIUS ? Unit.FAHRENHEIT : Unit.CELSIUS
-  ), [])
+  const { weather } = useFetchWeather(unit);
+  const toggleUnit = () => setUnit(unit === Unit.CELSIUS ? Unit.FAHRENHEIT : Unit.CELSIUS)
 
 
   const unitButtonStyle: CSSProperties = {
@@ -21,6 +19,7 @@ const App = () => {
     right: 10
   }
 
+  console.log(unit)
   return (
     <div className="app">
       <header className="app-header">

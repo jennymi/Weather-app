@@ -1,7 +1,8 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { config } from "../configs";
-import { IWeatherData } from "../models/weather";
+import { unitConversion } from "../helpers";
+import { IWeatherData, Unit } from "../models/weather";
 import useFetchLocation from "./useFetchLocation";
 
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
@@ -9,7 +10,7 @@ const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 /**
  * get weather data using user coordinates
  */
-const useFetchWeather = (): { weatherResponse: IWeatherData | undefined } => {
+const useFetchWeather = (unit: Unit): { weather: IWeatherData | undefined } => {
   const { location } = useFetchLocation();
   const [weatherResponse, setWeatherResponse] = useState<IWeatherData>();
 
@@ -32,8 +33,17 @@ const useFetchWeather = (): { weatherResponse: IWeatherData | undefined } => {
 
   }, [location])
 
+  const applyUnitConversion = useCallback((weather?: IWeatherData) => {
+    if (weather) {
+      // mutate extended displayTemp prop
+      weather.current.displayTemp = unitConversion({temp: weather.current.temp, unit})
+      return weather;
+    }
+  }, [unit])
+
+  const weather = applyUnitConversion(weatherResponse);
   return {
-    weatherResponse
+    weather
   }
 }
 
