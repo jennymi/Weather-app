@@ -46,12 +46,6 @@ export function displayWeatherIcon(iconWeatherStatus?: string): IconProp | undef
       return "cloud-sun";
   }
 
-  if(iconWeatherStatus === "Drizzle" || iconWeatherStatus === "Rain")
-     return "cloud-rain";
-
-  if(iconWeatherStatus === "Clouds")
-     return "cloud" ;
-
   return;
 }
 

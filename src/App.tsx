@@ -1,24 +1,19 @@
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import React, { useState } from 'react';
-import './App.scss';
 import cn from "classnames";
+import React, { useState } from 'react';
+import Helmet from 'react-helmet';
+import './App.scss';
 import { OptionToggles } from './components/OptionToggles';
+import { TempDisplay } from './components/TempDisplay';
 import { Timer } from './components/Timer';
-import { displayWeatherIcon } from './helpers';
 import useFetchLocation from './hooks/useFetchLocation';
 import useFetchWeather from './hooks/useFetchWeather';
 import { Unit } from './models/weather';
-import { TempDisplay } from './components/TempDisplay';
-import Helmet from 'react-helmet';
 
 const App = () => {
   const [unit, setUnit] = useState<Unit>(Unit.CELSIUS);
   const { location } = useFetchLocation();
   const { weather, refreshWeather, isLoading } = useFetchWeather(unit);
   const toggleUnit = () => setUnit(unit === Unit.CELSIUS ? Unit.FAHRENHEIT : Unit.CELSIUS)
-  const weatherIcon: IconProp | undefined = weather && displayWeatherIcon( weather.current.weather[0].main);
-
-  console.log(weatherIcon);
   return (
     <div className={cn("app", isLoading && "app-is-loading")}>
       <Helmet>
@@ -44,7 +39,7 @@ const App = () => {
         </div>
         <div className="app-main-body">
           <div className="left-panel">
-            <TempDisplay weather={weather} weatherIcon={weatherIcon}/>
+            <TempDisplay weather={weather} weatherIcon={weather && weather.current.weather[0].main}/>
           </div>
           <div className="right-panel">right
           </div>
