@@ -6,6 +6,8 @@ import { Timer } from './components/Timer';
 import useFetchLocation from './hooks/useFetchLocation';
 import useFetchWeather from './hooks/useFetchWeather';
 import { Unit } from './models/weather';
+import { TempDisplay } from './components/TempDisplay';
+import Helmet from 'react-helmet';
 
 const App = () => {
   const [unit, setUnit] = useState<Unit>(Unit.CELSIUS);
@@ -15,6 +17,9 @@ const App = () => {
 
   return (
     <div className={cn("app", isLoading && "app-is-loading")}>
+      <Helmet>
+        <title>{`Weather in ${location?.city} | RJPWeather`}</title>
+      </Helmet>
       <header className="app-header">
 
       </header>
@@ -42,7 +47,8 @@ const App = () => {
               </h1>
             </div>
           </div>
-          <div className="right-panel">avancerad väderdata här :)</div>
+          <TempDisplay weather={weather}/>
+          <div className="right-panel">right</div
         </div>
       </main>
     </div>
