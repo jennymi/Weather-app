@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.scss';
+import cn from "classnames";
 import { OptionToggles } from './components/OptionToggles';
 import { Timer } from './components/Timer';
 import useFetchLocation from './hooks/useFetchLocation';
@@ -11,11 +12,11 @@ import Helmet from 'react-helmet';
 const App = () => {
   const [unit, setUnit] = useState<Unit>(Unit.CELSIUS);
   const { location } = useFetchLocation();
-  const { weather, refreshWeather } = useFetchWeather(unit);
+  const { weather, refreshWeather, isLoading } = useFetchWeather(unit);
   const toggleUnit = () => setUnit(unit === Unit.CELSIUS ? Unit.FAHRENHEIT : Unit.CELSIUS)
 
   return (
-    <div className="app">
+    <div className={cn("app", isLoading && "app-is-loading")}>
       <Helmet>
         <title>{`Weather in ${location?.city} | RJPWeather`}</title>
       </Helmet>
@@ -34,11 +35,20 @@ const App = () => {
             unit={unit}
             toggleUnit={toggleUnit}
             refreshWeather={refreshWeather}
+            isFetching={isLoading}
           />
         </div>
         <div className="app-main-body">
+          <div className="left-panel">
+            <div className="temperature">{weather && weather.current?.displayTemp}</div>
+            <div>
+              <h1>
+              {weather && (weather.current.weather[0].main)}
+              </h1>
+            </div>
+          </div>
           <TempDisplay weather={weather}/>
-          <div className="right-panel">right</div>
+          <div className="right-panel">right</div
         </div>
       </main>
     </div>
