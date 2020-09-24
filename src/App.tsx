@@ -39,14 +39,6 @@ const App = () => {
           />
         </div>
         <div className="app-main-body">
-          <div className="left-panel">
-            <div className="temperature">{weather && weather.current?.displayTemp}</div>
-            <div>
-              <h1>
-              {weather && (weather.current.weather[0].main)}
-              </h1>
-            </div>
-          </div>
           <TempDisplay weather={weather}/>
           <div className="right-panel">right</div>
         </div>
