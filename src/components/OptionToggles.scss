@@ -9,11 +9,13 @@
 
 
 .header-options {
+  display: flex;
+  align-items: center;
   &-button {
     margin-left: 1rem;
 
     &.refresh-animation svg {
-      animation: spin 1s linear;
+      animation: spin 1s linear infinite;
     }
   }
 }

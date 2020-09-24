@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.scss';
+import cn from "classnames";
 import { OptionToggles } from './components/OptionToggles';
 import { Timer } from './components/Timer';
 import useFetchLocation from './hooks/useFetchLocation';
@@ -9,11 +10,11 @@ import { Unit } from './models/weather';
 const App = () => {
   const [unit, setUnit] = useState<Unit>(Unit.CELSIUS);
   const { location } = useFetchLocation();
-  const { weather, refreshWeather } = useFetchWeather(unit);
+  const { weather, refreshWeather, isLoading } = useFetchWeather(unit);
   const toggleUnit = () => setUnit(unit === Unit.CELSIUS ? Unit.FAHRENHEIT : Unit.CELSIUS)
 
   return (
-    <div className="app">
+    <div className={cn("app", isLoading && "app-is-loading")}>
       <header className="app-header">
 
       </header>
@@ -29,14 +30,19 @@ const App = () => {
             unit={unit}
             toggleUnit={toggleUnit}
             refreshWeather={refreshWeather}
+            isFetching={isLoading}
           />
         </div>
         <div className="app-main-body">
           <div className="left-panel">
             <div className="temperature">{weather && weather.current?.displayTemp}</div>
-            <div><h1>{weather && (weather.current.weather[0].main)}</h1></div>
+            <div>
+              <h1>
+              {weather && (weather.current.weather[0].main)}
+              </h1>
+            </div>
           </div>
-          <div className="right-panel">right</div>
+          <div className="right-panel">avancerad väderdata här :)</div>
         </div>
       </main>
     </div>

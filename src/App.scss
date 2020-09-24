@@ -1,11 +1,43 @@
 @import './styles/_variables.scss';
 
+@keyframes loader {
+  0% {
+    transform: translateX(0vw);
+    width: 15%;
+  }
+  50% {
+    width: 50%
+  }
+  100% {
+    transform: translateX(90vw);
+    width: 15%;
+  }
+}
+
 .app {
   text-align: center;
   min-height: 30vh;
   font-size: calc(10px + 2vmin);
   display: flex;
   flex-direction: column;
+  &.app-is-loading .app-main {
+    border-top: 4px solid $action-color;
+    position: relative;
+    &:before {
+      content: "";
+      position: absolute;
+      background-image: linear-gradient(to right, transparent, cyan, transparent);
+      transform: translateX(0vw);
+      animation: loader 2s linear 1s infinite; // show loader after 1 sec
+      animation-direction: alternate;
+      display: hidden;
+      top: -4px;
+      left: 0;
+      height: 4px;
+      width: 0%;
+      right: 0;
+    }
+  }
 }
 
 .app-header {
@@ -26,6 +58,7 @@
   min-height: 75vh;
   padding: 1.5rem;
   border-top: 2px solid $action-color;
+  transition: all 1s;
 
 
   &-header {
@@ -52,7 +85,7 @@
       line-height: 1.5;
     }
 
-    h3 {
+    h2 {
       display: inline-block;
       margin: 0;
     }
