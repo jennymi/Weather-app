@@ -1,3 +1,4 @@
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { Unit } from "../models/weather";
 
 /**
@@ -27,5 +28,24 @@ interface IUnitConversion {
  */
 export function unitConversion({ temp, unit }: IUnitConversion): string {
   return unit === Unit.CELSIUS ? kelvinToCelsius(temp) : kelvinToFahrenheit(temp);
+}
+
+export function displayWeatherIcon(iconWeatherStatus?: string): IconProp | undefined{
+
+  switch (iconWeatherStatus) {
+    case "Drizzle" || "Rain":
+      return "cloud-rain";
+
+    case "Clouds":
+      return "cloud";
+
+    case "Sunny":
+      return "sun";
+
+    case "SunnyCloud":
+      return "cloud-sun";
+  }
+
+  return;
 }
 
