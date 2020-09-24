@@ -10,8 +10,8 @@ import './index.css';
  * How to import and use icon? See: https://www.npmjs.com/package/@fortawesome/react-fontawesome
  */
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faRedoAlt } from '@fortawesome/free-solid-svg-icons'
-library.add(faRedoAlt)
+import { faRedoAlt, faCloud, faCloudRain, faCloudSun, faSun } from '@fortawesome/free-solid-svg-icons'
+library.add(faRedoAlt, faCloud, faCloudRain, faCloudSun, faSun)
 
 ReactDOM.render(
   <React.StrictMode>
