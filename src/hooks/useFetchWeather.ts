@@ -6,10 +6,10 @@ import { IWeatherData, Unit } from "../models/weather";
 import useFetchLocation from "./useFetchLocation";
 
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
-
 interface IFetchWeatherHook {
   weather: IWeatherData | undefined;
   refreshWeather: () => void;
+  isLoading: boolean;
 }
 
 /**
@@ -19,6 +19,7 @@ const useFetchWeather = (unit?: Unit): IFetchWeatherHook => {
   const { location } = useFetchLocation();
   const [weatherResponse, setWeatherResponse] = useState<IWeatherData>();
   const [triggerFetch, setTriggerFetch] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const lat = location?.latitude;
@@ -29,9 +30,13 @@ const useFetchWeather = (unit?: Unit): IFetchWeatherHook => {
     }
 
     const fetch = async () => {
+      setIsLoading(true);
       await axios(WEATHER_API_URL)
         .then(res => setWeatherResponse(res.data))
-        .then(() => setTriggerFetch(false))
+        .then(() =>  {
+          setTriggerFetch(false);
+          setIsLoading(false);
+        })
         .catch(error => {
           throw error;
         });
@@ -52,7 +57,8 @@ const useFetchWeather = (unit?: Unit): IFetchWeatherHook => {
 
   return {
     weather: applyUnitConversion(weatherResponse),
-    refreshWeather: () => setTriggerFetch(true)
+    refreshWeather: () => setTriggerFetch(true),
+    isLoading
   }
 }
 
