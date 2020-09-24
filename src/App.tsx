@@ -5,6 +5,7 @@ import { Timer } from './components/Timer';
 import useFetchLocation from './hooks/useFetchLocation';
 import useFetchWeather from './hooks/useFetchWeather';
 import { Unit } from './models/weather';
+import { TempDisplay } from './components/TempDisplay';
 
 const App = () => {
   const [unit, setUnit] = useState<Unit>(Unit.CELSIUS);
@@ -32,10 +33,7 @@ const App = () => {
           />
         </div>
         <div className="app-main-body">
-          <div className="left-panel">
-            <div className="temperature">{weather && weather.current?.displayTemp}</div>
-            <div><h1>{weather && (weather.current.weather[0].main)}</h1></div>
-          </div>
+          <TempDisplay weather={weather}/>
           <div className="right-panel">right</div>
         </div>
       </main>
