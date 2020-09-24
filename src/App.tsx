@@ -48,7 +48,7 @@ const App = () => {
             </div>
           </div>
           <TempDisplay weather={weather}/>
-          <div className="right-panel">right</div
+          <div className="right-panel">right</div>
         </div>
       </main>
     </div>
