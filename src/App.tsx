@@ -14,6 +14,7 @@ const App = () => {
   const { location } = useFetchLocation();
   const { weather, refreshWeather, isLoading } = useFetchWeather(unit);
   const toggleUnit = () => setUnit(unit === Unit.CELSIUS ? Unit.FAHRENHEIT : Unit.CELSIUS)
+
   return (
     <div className={cn("app", isLoading && "app-is-loading")}>
       <Helmet>
@@ -25,9 +26,7 @@ const App = () => {
       <main className="app-main">
         <div className="app-main-header">
           <div className="meta-info">
-            <span className="label">
-              <Timer/>
-            </span>
+            <Timer/>
             <h2>{location?.city}, {location?.country_name}</h2>
           </div>
           <OptionToggles
@@ -38,7 +37,7 @@ const App = () => {
           />
         </div>
         <div className="app-main-body">
-          <TempDisplay weather={weather} weatherIcon={weather && weather.current.weather[0].main}/>
+          <TempDisplay weather={weather} weatherStatus={weather?.current.weather[0].main}/>
           <div className="right-panel">right</div>
         </div>
       </main>

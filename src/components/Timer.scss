@@ -1,0 +1,13 @@
+@import "../styles/_variables.scss";
+
+.timer-button {
+  font-size: 1rem;
+  line-height: 100%;
+  margin-right: 1rem;
+  color: white;
+  background-color: $action-color;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.25rem;
+  height: 38px;
+  line-height: 1.5;
+}

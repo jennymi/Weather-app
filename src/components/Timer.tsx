@@ -1,16 +1,26 @@
-import React, { useEffect, useMemo, useState } from "react"
-import { formatDate } from "../helpers/dateTime"
+import React, { useCallback, useEffect, useState } from "react"
+import { Button } from "react-bootstrap";
+import { formatAdvancedTime, formatSimpleTime } from "../helpers/dateTime"
+import "./Timer.scss";
 
 export const Timer = () => {
-  const [timer, setTimer] = useState(() => new Date())
-  const formattedTimer = useMemo(() => formatDate(timer), [timer])
+  const [isAdvancedTimer, setIsAdvancedTimer] = useState<boolean>(false);
+  const [timer, setTimer] = useState(() => new Date());
 
-  const updateTime = () => setTimer(new Date());
+  const updateTime = useCallback(() => setTimer(new Date()), []);
 
   useEffect(() => {
     const interval = setInterval(() => updateTime(), 1000);
     return () => { clearInterval(interval) }
-  }, [])
+  }, [updateTime])
 
-  return <>{formattedTimer}</>;
+  return (
+    <Button
+      className="timer-button"
+      variant='primary'
+      onClick={() => setIsAdvancedTimer(prevIsAdvancedTimer => !prevIsAdvancedTimer)}
+    >
+      {isAdvancedTimer ? formatAdvancedTime(timer) : formatSimpleTime(timer)}
+    </Button>
+  )
 }
