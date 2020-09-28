@@ -50,7 +50,29 @@
   min-height: 25vh;
 
   input {
-    width: 14em;
+    width: 22em;
+  }
+
+  .ap-dropdown-menu {
+    background: #262931;
+    font-size: smaller;
+    width: 26.4em;
+    left: 50% !important;
+    right: auto !important;
+    text-align: center !important;
+    transform: translate(-50%, 0) !important;
+  }
+  .ap-suggestion:hover  {
+    background: #3f424b;
+  }
+  .ap-suggestion {
+    text-align: left;
+  }
+  .ap-suggestion-icon  {
+    vertical-align: 0.2em !important; 
+  }
+  .ap-cursor {
+    background: #3f424b;
   }
 }
 
@@ -120,4 +142,3 @@
 /* .app-main-header {
 
 } */
-

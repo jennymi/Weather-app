@@ -9,12 +9,6 @@ import useFetchLocation from './hooks/useFetchLocation';
 import useFetchWeather from './hooks/useFetchWeather';
 import { Unit } from './models/weather';
 
-// const people = [
-//   "Jenny",
-//   "Ruben",
-//   "Petter"
-// ];
-
 export const App = () => {
   const [unit, setUnit] = useState<Unit>(Unit.CELSIUS);
   const { location } = useFetchLocation();
@@ -61,5 +55,3 @@ export const App = () => {
     </div>
   );
 }
-
-// export default App;
