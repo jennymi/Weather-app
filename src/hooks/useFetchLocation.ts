@@ -16,7 +16,7 @@ const useFetchLocation = (): { location: IUserGeoLocation | undefined } => {
         throw error;
       });
   }, []);
-
+  
   return { location };
 }
 
