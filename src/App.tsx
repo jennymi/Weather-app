@@ -1,5 +1,5 @@
 import cn from "classnames";
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Helmet from 'react-helmet';
 import './App.scss';
 import { OptionToggles } from './components/OptionToggles';
@@ -8,21 +8,31 @@ import { Timer } from './components/Timer';
 import useFetchLocation from './hooks/useFetchLocation';
 import useFetchWeather from './hooks/useFetchWeather';
 import { Unit } from './models/weather';
+const places = require('places.js');
 
-const App = () => {
+export const App = () => {
   const [unit, setUnit] = useState<Unit>(Unit.CELSIUS);
   const { location } = useFetchLocation();
   const { weather, refreshWeather, isLoading } = useFetchWeather(unit);
   const toggleUnit = () => setUnit(unit === Unit.CELSIUS ? Unit.FAHRENHEIT : Unit.CELSIUS)
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    places({
+      container: inputRef.current
+    });
+  }, [])
 
   return (
     <div className={cn("app", isLoading && "app-is-loading")}>
       <Helmet>
         <title>{`Weather in ${location?.city} | RJPWeather`}</title>
       </Helmet>
-      <header className="app-header">
 
+      <header className="app-header">
+        <input ref={inputRef} placeholder="Search address here.."/>
       </header>
+
       <main className="app-main">
         <div className="app-main-header">
           <div className="meta-info">
@@ -44,5 +54,3 @@ const App = () => {
     </div>
   );
 }
-
-export default App;

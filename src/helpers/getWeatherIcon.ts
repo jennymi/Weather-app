@@ -29,6 +29,7 @@ export function getIconOfWeatherStatus(weatherStatus?: string): WeatherIcon {
     case "Mist":
       return WeatherIcon.SMOG;
     default:
-      throw new Error("No weather icon for current weather status");
+      // throw new Error("No weather icon for current weather status");
+      return WeatherIcon.CLOUD
   }
 }
