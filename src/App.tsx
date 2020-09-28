@@ -8,7 +8,6 @@ import { Timer } from './components/Timer';
 import useFetchLocation from './hooks/useFetchLocation';
 import useFetchWeather from './hooks/useFetchWeather';
 import { Unit } from './models/weather';
- const AlgoliaPlaces = require("algolia-places-react");
 
 // const people = [
 //   "Jenny",
@@ -21,18 +20,15 @@ export const App = () => {
   const { location } = useFetchLocation();
   const { weather, refreshWeather, isLoading } = useFetchWeather(unit);
   const toggleUnit = () => setUnit(unit === Unit.CELSIUS ? Unit.FAHRENHEIT : Unit.CELSIUS)
-
-  // const places = require('places.js');
-  // const ready = () =>
-  // document.readyState === 'interactive' || document.readyState === 'complete' ? Promise.resolve() : new Promise(resolve => {
-  //     document.addEventListener('DOMContentLoaded', resolve);
-  //   });
-
-  // ready().then(() => {
-  //   places({
-  //     container: document.getElementById('address-input'),
-  //   });
-  // });
+  const places = require('places.js');
+  const ready = () => document.readyState === 'interactive' || document.readyState === 'complete' ? Promise.resolve() : new Promise(resolve => {
+      document.addEventListener('DOMContentLoaded', resolve);
+    });
+  ready().then(() => {
+    places({
+      container: document.getElementById('address-input'),
+    });
+  });
 
   return (
     <div className={cn("app", isLoading && "app-is-loading")}>
@@ -41,19 +37,7 @@ export const App = () => {
       </Helmet>
       
       <header className="app-header">
-        <AlgoliaPlaces
-        placeholder='Write an address here'
-  
-        options={{
-          appId: 'plBEIX3XLJTF',
-          apiKey: '547067f292f889f1bda94233ec1eb386',
-          language: 'en',
-          countries: ['en'],
-          type: 'city',
-          // Other options from https://community.algolia.com/places/documentation.html#options
-        }}
-  
-      />
+        <input id="address-input" placeholder="Search address here.."/>
       </header>
 
       <main className="app-main">
