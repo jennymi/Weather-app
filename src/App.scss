@@ -126,14 +126,21 @@
 
       .weather-condition{
         display: flex;
+        margin-left: 1rem;
         svg{
           margin-right: 1rem;
+          font-size: 9rem;
+          margin-top: 3.5rem;
         }
       }
-
       .temperature {
-        font-size: 8.5rem;
-        font-weight: 700;
+        font-size: 7.5rem;
+        font-weight: 400;
+        margin-bottom: -2.5rem;
+      }
+      h3 {
+        margin-left: 6rem;
+        font-weight: 400;
       }
     }
   }
