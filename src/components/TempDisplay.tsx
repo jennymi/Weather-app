@@ -6,11 +6,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export const TempDisplay = ({ weather, weatherStatus }: { weather?: IWeatherData, weatherStatus?: string }) => {
   return (
     <div className="left-panel">
-      <div className="temperature">{weather && weather.current?.displayTemp}</div>
-      <div className="weather-condition">
+      <div className="weather-condition temperature">
         <h1>{weatherStatus && <FontAwesomeIcon icon={getIconOfWeatherStatus(weatherStatus)} size="lg" />}</h1>
-        <h1>{weather?.current.weather[0].main}</h1>
+        {weather && weather.current?.displayTemp}
       </div>
+      <h3>{weather?.current.weather[0].main}</h3>
     </div>
   )
 }
