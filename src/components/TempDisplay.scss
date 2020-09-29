@@ -1,0 +1,26 @@
+.temperature {
+    display: flex;
+  
+    &-info {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+  
+      h2 {
+        font-size: 6.5rem;
+        margin: 0;
+        line-height: 6.3rem;
+      }
+      h3 {
+        margin-top: auto;
+        margin-bottom: 0;
+      }
+    }
+  
+    &-icon {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      margin-right: 4rem;
+    }
+  }
