@@ -6,8 +6,8 @@ import { IWeatherData, Unit } from "../models/weather";
 import useFetchLocation from "./useFetchLocation";
 
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
-interface IFetchWeatherHook {
-  weather: IWeatherData | undefined;
+export interface IWeatherState {
+  data: IWeatherData | undefined;
   refreshWeather: () => void;
   isLoading: boolean;
 }
@@ -15,7 +15,7 @@ interface IFetchWeatherHook {
 /**
  * get weather data using user coordinates
  */
-const useFetchWeather = (unit?: Unit): IFetchWeatherHook => {
+const useFetchWeather = (unit?: Unit): IWeatherState => {
   const { location } = useFetchLocation();
   const [weatherResponse, setWeatherResponse] = useState<IWeatherData>();
   const [triggerFetch, setTriggerFetch] = useState<boolean>(true);
@@ -56,7 +56,7 @@ const useFetchWeather = (unit?: Unit): IFetchWeatherHook => {
   }, [unit])
 
   return {
-    weather: applyUnitConversion(weatherResponse),
+    data: applyUnitConversion(weatherResponse),
     refreshWeather: () => setTriggerFetch(true),
     isLoading
   }

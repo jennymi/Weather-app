@@ -12,7 +12,6 @@ export enum WeatherIcon {
  * @param iconWeatherStatus weather status from API
  */
 export function getIconOfWeatherStatus(weatherStatus?: string): WeatherIcon {
-  console.log(weatherStatus)
   switch (weatherStatus) {
     case "Drizzle" || "Rain":
       return WeatherIcon.CLOUD_RAIN;

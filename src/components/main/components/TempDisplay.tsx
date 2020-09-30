@@ -1,6 +1,6 @@
 import React from "react";
-import { IWeatherData } from "../models/weather";
-import { getIconOfWeatherStatus } from "../helpers/getWeatherIcon";
+import { IWeatherData } from "../../../models/weather";
+import { getIconOfWeatherStatus } from "../../../helpers/getWeatherIcon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./TempDisplay.scss";
 

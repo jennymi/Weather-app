@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { Button } from "react-bootstrap";
 import classNames from "classnames";
-import { Unit } from "../models/weather";
+import { Unit } from "../../../models/weather";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import "./OptionToggles.scss";
 
@@ -26,10 +26,13 @@ export const OptionToggles = ({ unit, refreshWeather, toggleUnit, isFetching }: 
         setIsRefreshing(false)
       }
     }, minRefreshInterval);
-    }, [isFetching, refreshWeather]);
+  }, [isFetching, refreshWeather]);
 
   const isRefreshState: boolean = isRefreshing || isFetching;
-  const refreshBtnClasses = classNames("header-options-button", isRefreshState && "refresh-animation")
+  const refreshBtnClasses = classNames(
+    "header-options-button",
+    isRefreshState && "refresh-animation"
+  )
   return (
     <div className="header-options">
       <Button className={refreshBtnClasses} variant='primary' onClick={refresh} disabled={isRefreshState}>

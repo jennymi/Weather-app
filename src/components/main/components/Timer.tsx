@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react"
 import { Button } from "react-bootstrap";
-import { formatAdvancedTime, formatSimpleTime } from "../helpers/dateTime"
+import { formatAdvancedTime, formatSimpleTime } from "../../../helpers/dateTime"
 import "./Timer.scss";
 
 export const Timer = () => {
